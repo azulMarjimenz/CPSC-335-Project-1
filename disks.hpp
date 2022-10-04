@@ -140,13 +140,13 @@ public:
   unsigned swap_count() const {
     return _swap_count;
   }
-};
+}; 
 
-// Algorithm that sorts disks using the alternate algorithm.
-sorted_disks sort_alternate(const disk_state& before) {
+// Algorithm that sorts disks using the alternate algorithm. 
+sorted_disks sort_alternate(const disk_state& before)  {
 	int numOfSwap = 0;                                                                      //record # of step swap
  
-          }
+          } //To Do 
 
   return sorted_disks(disk_state(state), numOfSwap);
 }

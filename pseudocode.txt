@@ -1,0 +1,13 @@
+Algorithm that sorts disks using the Alternate Algorithm 
+----------------------------------------------------------
+
+int swapped = 0;   
+for i = 1 to n-1 do 
+    if (left_Disk > right_Disk)
+      swap(left_Disk, right_Disk)
+      swapped += 1 
+    if (swapped == 0) 
+      end 
+return number of swaps 
+
+
