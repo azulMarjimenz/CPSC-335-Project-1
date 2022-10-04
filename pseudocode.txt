@@ -3,38 +3,45 @@ Algorithm that sorts disks using the Alternate Algorithm
 
 Alternate:
 
-int swapped = 0;   
-for i = 1 to n-1 do 
-    if (left_Disk > right_Disk)
-      swap(left_Disk, right_Disk)
-      swapped += 1 
-    if (swapped == 0) 
-      end 
-return number of swaps 
+int swapped = 0;                  //1tu
+for i = 1 to n-1 do               //n-1 tu
+    if (left_Disk > right_Disk)   //(1 tu)
+      swap(left_Disk, right_Disk) //1 tu
+      swapped += 1                //1tu
+    if (swapped == 0)             //1 tu
+      end                         // 1tu
+return number of swaps       
+
+1 + n-1(1+max(2,0)+(1+max(1,0))) = 1 + n-1(5) = 5n
 
 
 
 Lawnmower:
 
- swapped = 0
+ swapped = 0       1tu           
 
-for i in n do:
-    swapped += 0
-    if i > next(i) and != null do:
-      swap(i, next(i))
-      swapped++
-    if swapped == 0 and next(i) != null do:
-       break
-     if next(i) == null
-        for j in reverse n do:
-          if j < next(j) do:
-             swap(j, next(j))
-             swapped = 1
+for i = 0 in n do:       n+1       
+    swapped += 0         1tu
+    if i > next(i) and != null do:    2tu
+      swap(i, next(i))         1tu
+      swapped++                1tu
+    if swapped == 0 and next(i) != null do:     2tu
+       break    1tu
+    if next(i) == null  1tu
+        for j = 0 in reverse n do:     n+1 tu
+          if j < next(j) do:      1tu
+             swap(j, next(j))     1tu
+             swapped = 1       1tu
           else 
-             swapped = 0
-           if next(i) == null
-               i = begin()
-               break
+             swapped = 0       1tu
+           if next(i) == null  1tu
+               i = begin()     1tu
+               break           1tu
           endif
 
+1 + n+1(2+max(2,0) + 2+max(1,0) + 1+max(6n+6,0))
+1 + n-1(2+2 + 2+1 + 1+6n+6) = n(4 + 3 + 6n+7) = n(6n+14) = 6n^2+14n
+
+inside loop:
+n+1(1+max(2,1)+1+max(2,0)) = n+1(1+2+1+2) = n+1(6) = 6n+6
 
