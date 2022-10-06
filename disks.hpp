@@ -71,6 +71,8 @@ public:
     std::swap(_colors[left_index], _colors[right_index]);
   }
 
+
+
   std::string to_string() const {
     std::stringstream ss;
     bool first = true;
@@ -112,7 +114,14 @@ public:
   // Return true when this disk_state is fully sorted, with all light disks on
   // the left (low indices) and all dark disks on the right (high indices).
   bool is_sorted() const {
-      
+    for (size_t i = 0; i < total_count(); i++) 
+    {
+        if (i < total_count()/2) {
+            if (_colors[i] != DISK_LIGHT) return false;
+        } else  {
+            if (_colors[i] != DISK_DARK) return false;
+        }
+    }
       return true;
   }
 };
@@ -144,9 +153,8 @@ public:
 
 // Algorithm that sorts disks using the alternate algorithm. 
 sorted_disks sort_alternate(const disk_state& before)  {
-	int numOfSwap = 0;                                                                      //record # of step swap
- 
-          } //To Do 
+	int numOfSwap = 0;                                                                            //record # of step swap
+  auto state = before;    
 
   return sorted_disks(disk_state(state), numOfSwap);
 }
@@ -154,8 +162,40 @@ sorted_disks sort_alternate(const disk_state& before)  {
 
 // Algorithm that sorts disks using the lawnmower algorithm.
 sorted_disks sort_lawnmower(const disk_state& before) {
-  	
-	  }
+  	int numOfSwap = 0;
+    disk_state state = before;
 
+  for (int i = 0; i < state.total_count()/2; i++)
+  {
+    bool b_swap = false;
+    //we are accumulating swaps
+    for(int k = 0; k < state.total_count(); k++)
+    {
+      if(k+1 != state.total_count())
+      {
+        //if the left value of the pair is greater then the right value then swap
+        if (state.get(k) == DISK_DARK && state.get(k+1) == DISK_LIGHT)
+        {
+          state.swap(k);
+          b_swap = true;
+          //accumulate swaps since we want to see if there were any swaps within a set of n (size of vector) iterations not just one iteration
+          numOfSwap++;
+        }
+      }
+    }
+    for(int j = state.total_count()-1; j >= 0; j--)
+    {
+      if(j != 0)
+      {
+        if (state.get(j) == DISK_LIGHT && state.get(j-1) == DISK_DARK)
+        {
+          state.swap(j-1);
+          numOfSwap++;
+          b_swap = true;
+        }
+      }
+    }
+    if(!(b_swap)) break;
+  }
   return sorted_disks(disk_state(state), numOfSwap);
 }
