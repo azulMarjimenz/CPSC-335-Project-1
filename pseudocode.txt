@@ -3,30 +3,37 @@ Algorithm that sorts disks using the Alternate Algorithm
 ----------------------------------------------------------
 
 Alternate:
+   
+int swapped = 0                         // 1tu 
+disk_state state = before               // 1tu 
+for i = 0 to n do                       // n+1 times 
+  for j = 0 to n-1 do                   // n times 
+  if (Left == Dark && Right == light)   // 3tu 
+     swap(Left_Disk, Right_Disk)        // 1tu
+     ++swapped                          // 1tu
+end 
 
-int swapped = 0;                  //1tu
-for i = 1 to n-1 do               //n-1 tu
-    if (left_Disk > right_Disk)   //(1 tu)
-      swap(left_Disk, right_Disk) //1 tu
-      swapped += 1                //1tu
-    if (swapped == 0)             //1 tu
-      end                         // 1tu
-return number of swaps       
 
 **************************************************************************************************** 
 Step Count calculation 
 ****************************************************************************************************
 
-1 + n-1(1+max(2,0)+(1+max(1,0))) = 1 + n-1(5) = 5n 
+n+1         n             
+Σ           Σ             
+i = 0      j = 0        
+(outter)   (inner) 
 
+if statement s.c = 3+1+1+max(2,0) = 7tu 
+
+(inner)  n
+         Σ  6^i = (6^(n)-1)/(6-1) 
+         j = 0  
+(outter) n+1 
+         Σ  
 ****************************************************************************************************
 Proof by limits 
 ****************************************************************************************************
-
-lim as n -> infinity:
- 5n ∈ O(n)
-lim as n-> infinity  = 5 > 0, so 5n ∈ O(n) 
-
+ ∈ O(n^2)
 
 
 
@@ -71,7 +78,7 @@ n+1(1+max(2,1)+1+max(2,0)) = n+1(1+2+1+2) = n+1(6) = 6n+6
 Proof by limits 
 ****************************************************************************************************
 
-6n^2 + 14n ∈ O(n^2)
+6n^2 + 14n ∈ O(n^2) 
 
 lim as n -> infinity 6n^2 + 14n
 

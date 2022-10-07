@@ -152,9 +152,23 @@ public:
 }; 
 
 // Algorithm that sorts disks using the alternate algorithm. 
-sorted_disks sort_alternate(const disk_state& before)  {
-	int numOfSwap = 0;                                                                            //record # of step swap
-  auto state = before;    
+sorted_disks sort_alternate(const disk_state& before)  
+{
+	int numOfSwap = 0;       //record # of step swap
+  disk_state state = before; //keep track before swapping 
+  for(size_t i =0; i < state.light_count(); ++i)
+  {
+    for(size_t j = 0; j < state.total_count()-1; ++j) 
+    { 
+      if(state.get(j) == DISK_DARK && state.get(j+1) == DISK_LIGHT)//if left disk is greater than right disk in a pair 
+      {
+        state.swap(j); //swaps disk
+        ++numOfSwap;  //accumulate swaps 
+      }
+
+    }
+
+  }   
 
   return sorted_disks(disk_state(state), numOfSwap);
 }
