@@ -4,37 +4,34 @@ Algorithm that sorts disks using the Alternate Algorithm
 
 Alternate:
    
-int swapped = 0                         // 1tu 
+int numOfSwap = 0                       // 1tu 
 disk_state state = before               // 1tu 
 for i = 0 to n do                       // n+1 times 
   for j = 0 to n-1 do                   // n times 
   if (Left == Dark && Right == light)   // 3tu 
      swap(Left_Disk, Right_Disk)        // 1tu
-     ++swapped                          // 1tu
+     ++numOfSwap                        // 1tu
 end 
 
 
 **************************************************************************************************** 
 Step Count calculation 
 ****************************************************************************************************
+if statement s.c = 3+1+1+max(2,0) = 7tu
+S.C = (n+1)(n) * (3+1+1+max(2,0)) 
+    = n^2 + n * 7 
+    = 7n^2 + n 
 
-n+1         n             
-Σ           Σ             
-i = 0      j = 0        
-(outter)   (inner) 
-
-if statement s.c = 3+1+1+max(2,0) = 7tu 
-
-(inner)  n
-         Σ  6^i = (6^(n)-1)/(6-1) 
-         j = 0  
-(outter) n+1 
-         Σ  
 ****************************************************************************************************
 Proof by limits 
 ****************************************************************************************************
- ∈ O(n^2)
+7n^2 + n ∈ O(n^2) 
 
+lim as n -> infinity 7n^2/n^2  -> 7 
+lim as n -> infinity n/n^2     -> 0  
+
+7+0 = 7 
+7 ≥ 0 so, by the limit theormem 7n^2 + n ∈ O(n^2) 
 
 
 ----------------------------------------------------------
@@ -43,24 +40,24 @@ Algorithm that sorts disks using the Lawnmower Algorithm
 
 Lawnmower:
 
-  int numOfSwap = 0    1tu
+  int numOfSwap = 0                                 //1tu
 
-  for i = 0 in n/2 do:    (n/2)+1 tu
-    b_swap = false        1tu  
-    for k = 0 in n do:    n+1 tu 
-      if k+1 != n do:     2tu
-        if(k == DISK_DARK && k+1 == DISK_LIGHT)     4tu
-          swap(k,k+1)                               1tu
-          b_swap = true                             1tu
-          numOfSwap++                               1tu
-    for j = n down to 0 do:  (0-n/-1) + 1 = n+1tu
-      if j != 0    1tu
-        if(j == DISK_LIGHT && k-1 == DISK_DARK)    4tu
-          swap(k,k-1)                              1tu
-          b_swap = true                            1tu
-          numOfSwap++                              1tu
+  for i = 0 in n/2 do:                              //(n/2)+1 tu
+    b_swap = false                                  //1tu  
+    for k = 0 in n do:                              //n+1 tu 
+      if k+1 != n do:                               //2tu
+        if(k == DISK_DARK && k+1 == DISK_LIGHT)     //4tu
+          swap(k,k+1)                               //1tu
+          b_swap = true                             //1tu
+          numOfSwap++                               //1tu
+    for j = n down to 0 do:  (0-n/-1) + 1 =         //n+1tu
+      if j != 0                                     //1tu
+        if(j == DISK_LIGHT && k-1 == DISK_DARK)     //4tu
+          swap(k,k-1)                               //1tu
+          b_swap = true                             //1tu
+          numOfSwap++                               //1tu
     
-    if(!(b_swap))                                  1tu
+    if(!(b_swap))                                   //1tu
       break        
 
     endif
@@ -87,5 +84,5 @@ n/2 + 2n + 19 ∈ O(n^2)
 
 lim as n -> infinity 1/2n + 2/n + 19/n^2
 
-0 + 0 + 0 = 0 ; L >= 0, so n/2 + 2n + 19 ∈ O(n^2)
+0 + 0 + 0 = 0 ; L ≥ 0, so n/2 + 2n + 19 ∈ O(n^2)
         
