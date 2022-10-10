@@ -92,4 +92,5 @@ Why use .gitignore?
 .gitignore is useful when working with a git repository. We can add files within our .gitignore to 
 ignore files that we do not want to commit to our repository and avoid file clutter. Files such as the 
 .docx and .out files are not needed in our pushes so we can exclude those files. We are leaving our 
-.txt file just in case you need the information still.       
+.txt file just in case you need the information still.     
+  
